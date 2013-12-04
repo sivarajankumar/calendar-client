@@ -1,0 +1,30 @@
+#content {
+	width:600px;
+	margin:0px auto;
+	text-align:left;
+	padding:15px;
+	border:1px dashed #333;
+	background-color:#eee;
+}
+
+.table-cal {
+  height: 250px;
+  margin: 0px auto;
+}
+
+.day {
+  width: 200px;
+  text-align: center;
+}
+
+.day-0 {
+  background-color:#BBB;
+}
+
+.day-50 {
+  background-color:#88DD88;
+}
+
+.day-100 {
+  background-color:#88DD00;
+}
