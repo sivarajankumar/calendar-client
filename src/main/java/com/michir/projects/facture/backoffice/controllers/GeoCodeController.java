@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +23,9 @@ public class GeoCodeController {
 
 	@RequestMapping(value="/json", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Map<String, Object> getCoordinates(@RequestParam("address") String address) {
+	public Map<String, Object> getCoordinates(@RequestParam("address") String address, HttpServletResponse response) {
+		
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		
 		Location location = new Location();
 		location.setLat(2.56);
