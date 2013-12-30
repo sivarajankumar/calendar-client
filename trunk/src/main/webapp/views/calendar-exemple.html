@@ -1,0 +1,24 @@
+<html ng-app>
+  <head>
+  <script src="angular.min.js"></script>
+  <script src="table.js"></script>
+  
+  <link rel="stylesheet" href="table.css">
+  </head>
+  <body>
+
+    <div ng-controller="TableCtrl" ng-init="init()">
+      <h3>{{month.name}}</h3>
+      <table border="0">
+        <tr ng-repeat="week in month.weeks">
+          <td class="day-{{day.type}}" ng-repeat="day in week.days">{{day.name}} {{day.day}} (data index: {{day.index}})</td>
+        </tr>
+      </table>
+      
+      <h2>{{daysCount}} days</h2>
+      
+      
+    </div>
+
+  </body>
+</html>
