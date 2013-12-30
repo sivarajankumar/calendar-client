@@ -1,0 +1,12 @@
+.day-we {
+  background:cyan;
+}
+
+.day-on {
+  #background:lightgray;
+  border:dashed 0.1ex; 
+}
+
+.day-off { 
+  visibility:collapse; 
+}
