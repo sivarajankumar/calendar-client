@@ -36,13 +36,8 @@ public class Week implements Iterable<Day> {
 		days = new ArrayList<Day>(7);
 		while (weekNbr == week) {
 			Day day = new Day(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-			if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
-				day.setOff(Boolean.TRUE);
-			}
-			if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
-				day.setOff(Boolean.TRUE);
-			}
 			days.add(day);
+
 			calendar.add(Calendar.DAY_OF_MONTH, 1);
 			if (calendar.get(Calendar.MONTH) != month) {
 				break;

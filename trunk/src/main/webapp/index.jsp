@@ -12,6 +12,7 @@
 	<script src="<c:url value="js/calendar.js" />"></script>
 	<script src="<c:url value="js/todo.js" />"></script>
 	<script src="<c:url value="js/calendar-ui.js" />"></script>
+	<script src="<c:url value="js/utils.js" />"></script>
 
 </head>
 <body>
