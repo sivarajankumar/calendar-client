@@ -1,11 +1,23 @@
-/**
- * Created with JetBrains WebStorm.
- * User: michir
- * Date: 13/02/13
- * Time: 14:10
- * To change this template use File | Settings | File Templates.
- */
+function Todo($scope, $http, $location) {
 
-function Todo($routeParams) {
+	var today = new Date();
+	$scope.year = today.getFullYear();
+	$scope.month = today.getMonth();
+
+	$scope.change = function() {
+		$scope.url = $location.absUrl().substr(0, $location.absUrl().lastIndexOf('#')) + 'spring/calendar/'+$scope.year+'/'+$scope.month;    
+
+		$http.get($scope.url)
+		.success(function(data) {
+			$scope.weeks = data.month.weeks;
+			angular.forEach($scope.weeks, function(week) {
+				fillWeekDays(week);
+				sortWeekDays(week);
+			});
+		})
+		.error(function() {
+			alert("ERROR!");
+		});
+	}
 
 }

@@ -1,3 +1,20 @@
-<div>
-    <p>TODO</p>
+<div id="content" ng-init="init()">
+
+	<h3>Year {{year}}, Month {{month}}</h3>
+
+	<input type="number" ng-model="year" min="2000" max="2099" required
+		ng-change="change()" /> <br /> <input type="month" ng-model="month"
+		min="1" max="12" required ng-change="change()" />
+
+	<table class="table-cal" border="1">
+		<tr ng-repeat="week in weeks">
+		  <td ng-repeat="d in week.days" class="day day-{{d.off}}">{{d.name}} {{d.dayOfMonth}}</td>
+		</tr>
+	</table>
+
+	<form ng-submit="save()"></form>
+
+	<hr />
+	{{monthOfYear}}
+
 </div>

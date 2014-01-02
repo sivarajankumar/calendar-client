@@ -2,11 +2,14 @@ package com.michir.projects.facture.backoffice.data;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
-public class Month {
+import org.codehaus.jackson.annotate.JsonIgnore;
 
-	private List<Day> days;
+public class Month implements Iterable<Week> {
+
+	private List<Week> weeks;
 	
 	private Integer monthOfYear;
 	
@@ -18,27 +21,14 @@ public class Month {
 		
 		monthOfYear = calendar.get(Calendar.MONTH);
 
-		days = new ArrayList<Day>(31);
+		int weekStart = 1;
+		this.weeks = new ArrayList<Week>(6);
 		while (calendar.get(Calendar.MONTH) == month) {
-			Day day = new Day(year, month, calendar.get(Calendar.DAY_OF_MONTH));
-			days.add(day);
-			calendar.add(Calendar.DAY_OF_MONTH, 1);
+			Week week = new Week(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), weekStart);
+			weeks.add(week);
+			weekStart++;
+			calendar.add(Calendar.DAY_OF_MONTH, week.getDays().size());
 		}
-
-	}
-
-	/**
-	 * @return the days
-	 */
-	public List<Day> getDays() {
-		return days;
-	}
-
-	/**
-	 * @param days the days to set
-	 */
-	public void setDays(List<Day> days) {
-		this.days = days;
 	}
 
 	/**
@@ -53,5 +43,27 @@ public class Month {
 	 */
 	public void setMonthOfYear(Integer monthOfYear) {
 		this.monthOfYear = monthOfYear;
+	}
+
+	@Override
+	public Iterator<Week> iterator() {
+		return weeks.iterator();
+	}
+
+	public List<Week> getWeeks() {
+		return weeks;
+	}
+
+	public void setWeeks(List<Week> weeks) {
+		this.weeks = weeks;
+	}
+	
+	@JsonIgnore
+	public List<Day> getDays() {
+		List<Day> days = new ArrayList<Day>();
+		for (Week week : weeks) {
+			days.addAll(week.getDays());
+		}
+		return days;
 	}
 }

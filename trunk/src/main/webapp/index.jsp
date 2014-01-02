@@ -11,14 +11,15 @@
 	<script src="<c:url value="js/app.js" />"></script>
 	<script src="<c:url value="js/calendar.js" />"></script>
 	<script src="<c:url value="js/todo.js" />"></script>
+	<script src="<c:url value="js/calendar-ui.js" />"></script>
 
 </head>
 <body>
 
 	<div class="header">CRA Project</div>
 	<div class="navigation">
-    	<a href="<c:url value="/calendar" />">Saisir</a><br/>
-        <a href="<c:url value="/todo" />">Todo</a>
+    	<a href="<c:url value="#calendar" />">Saisir</a><br/>
+        <a href="<c:url value="#todo" />">Todo</a>
     </div>
 	<div class="main">
 		<div ng-view></div>
