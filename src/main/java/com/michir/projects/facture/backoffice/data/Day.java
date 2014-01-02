@@ -1,20 +1,25 @@
 package com.michir.projects.facture.backoffice.data;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 
 public class Day {
 
 	private Integer dayOfMonth;
 
-	private Boolean off;
+	private Boolean off = Boolean.FALSE;
 
 	private Integer dayOfWeek;
 
 	private Integer dayOfYear;
 	
 	private Calendar calendar;
+	
+	private String name;
 	
 	public Day(Calendar calendar) {
 		initializeFromCalendar(calendar);
@@ -39,6 +44,7 @@ public class Day {
 		this.dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 		this.dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 		this.dayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
+		this.name = new SimpleDateFormat("EEE").format(calendar.getTime());
 	}
 	
 	/**
@@ -100,8 +106,22 @@ public class Day {
 	/**
 	 * @return the calendar
 	 */
+	@JsonIgnore
 	public Calendar getCalendar() {
 		return calendar;
+	}
+	
+	@Override
+	public String toString() {
+		return new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime());
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
 

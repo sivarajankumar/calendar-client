@@ -17,6 +17,16 @@
   text-align: center;
 }
 
+.day-true {
+    background-color:#BBB;
+}
+.day-false {
+    background-color:#88DD00;
+}
+.day-none {
+    visibility: collapse;
+}
+
 .day-0 {
   background-color:#BBB;
 }
