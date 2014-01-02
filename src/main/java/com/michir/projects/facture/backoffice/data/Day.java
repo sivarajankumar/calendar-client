@@ -11,7 +11,7 @@ public class Day {
 
 	private Integer dayOfMonth;
 
-	private Boolean off = Boolean.FALSE;
+	private Type type;
 
 	private Integer dayOfWeek;
 
@@ -62,20 +62,6 @@ public class Day {
 	}
 
 	/**
-	 * @return the off
-	 */
-	public Boolean getOff() {
-		return off;
-	}
-
-	/**
-	 * @param off the off to set
-	 */
-	public void setOff(Boolean off) {
-		this.off = off;
-	}
-
-	/**
 	 * @return the dayOfWeek
 	 */
 	public Integer getDayOfWeek() {
@@ -122,6 +108,52 @@ public class Day {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * @return the type
+	 */
+	public Type getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+	public enum Type {
+		off,
+		none,
+		half,
+		full,
+		hide
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return 
+				(obj instanceof Day)
+				&&
+				sameDayInYear((Day) obj);
+	}
+
+	public Boolean isWE() {
+		return 
+				calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY
+				||
+				calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY;
+	}
+	
+	@Override
+	public int hashCode() {
+		return dayOfYear.hashCode();
+	}
+	
+	public Boolean sameDayInYear(Day day) {
+		return day.dayOfYear.intValue() == this.dayOfYear.intValue();
 	}
 }
 

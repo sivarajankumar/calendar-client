@@ -17,24 +17,22 @@
   text-align: center;
 }
 
-.day-true {
-    background-color:#BBB;
+.day-off {
+    background-color:#888888;
 }
-.day-false {
-    background-color:#88DD00;
+.day-half {
+    background-color:#88DDBB;
+}
+.day-full {
+	background-color:#00FF00;
 }
 .day-none {
+	background-color:#BBBBBB;
+}
+.day-hide {
     visibility: collapse;
 }
 
-.day-0 {
-  background-color:#BBB;
-}
-
-.day-50 {
-  background-color:#88DD88;
-}
-
-.day-100 {
-  background-color:#88DD00;
+.button-form {
+ float: right;	
 }

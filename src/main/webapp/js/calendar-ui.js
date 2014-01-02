@@ -11,6 +11,24 @@ function dayExists(days, dayname) {
 	return false;
 };
 
+function getNextDayType(type) {
+	if (type == 'off') {
+		return 'off';
+	}
+	if (type == 'hide') {
+		return 'hide';
+	}
+	if (type == 'none') {
+		return 'half';
+	}
+	if (type == 'half') {
+		return 'full';
+	}
+	if (type == 'full') {
+		return 'none';
+	}
+}
+
 /**
  * Adds to week.days array a day ref.
  */      
@@ -18,7 +36,7 @@ function addIfNotExists(week, dayref) {
 	if (dayExists(week.days, dayref.name)) {
 		return;
 	}
-	week.days.unshift({"name":dayref.name, "dayOfWeek":dayref.index_data, "dayOfMonth":-1, "off":"none"});
+	week.days.unshift({"name":dayref.name, "dayOfWeek":dayref.index_data, "dayOfMonth":-1, "type":"hide"});
 };
 
 /**

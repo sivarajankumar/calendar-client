@@ -2,19 +2,35 @@
 
 	<h3>Year {{year}}, Month {{month}}</h3>
 
-	<input type="number" ng-model="year" min="2000" max="2099" required
-		ng-change="change()" /> <br /> <input type="month" ng-model="month"
-		min="1" max="12" required ng-change="change()" />
+	<p>
+     Année: <select ng-model="year" ng-options="y for y in years" required ng-change="change()" />
+    </p>
+    <p>
+	 Mois: <input type="text" ng-model="month" required ng-change="change()" />
+	 </p>
+	<br />
 
 	<table class="table-cal" border="1">
 		<tr ng-repeat="week in weeks">
-		  <td ng-repeat="d in week.days" class="day day-{{d.off}}">{{d.name}} {{d.dayOfMonth}}</td>
+			<td ng-repeat="d in week.days" class="day day-{{d.type}}" ng-click="dayClick(d)">{{d.name}} {{d.dayOfMonth}}</td>
 		</tr>
 	</table>
+  	<p align="right">
+        <b>Total working days: {{totalWorking()}}</b>
+    </p>
 
-	<form ng-submit="save()"></form>
+    <hr width="50%">
+  <form ng-submit="save()">
+    <input class="button-form" type="submit" value="Save" />
+  </form>
+    <hr width="50%">
 
-	<hr />
-	{{monthOfYear}}
+    <table>
+        <tr><td class="day-off">A Week end day</td></tr>
+        <tr><td class="day-full">A Working day</td></tr>
+        <tr><td class="day-half">A Half (1/2) working day</td></tr>
+        <tr><td class="day-none">A day off</td></tr>
+    </table>
 
 </div>
+
