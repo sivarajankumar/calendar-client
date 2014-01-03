@@ -33,11 +33,12 @@ function Todo($scope, $http, $location) {
 	$scope.change = function() {
 
 		var cp = contextPath($location.absUrl(), '#');
-		$scope.url = cp + 'spring/calendar/'+$scope.year+'/'+$scope.month;    
+		var url = cp + 'spring/calendar/'+$scope.year+'/'+$scope.month;    
 
-		$http.get($scope.url)
+		$http.get(url)
 		.success(function(data) {
 			$scope.weeks = data.month.weeks;
+			$scope.postMonth = data.month;
 			angular.forEach($scope.weeks, function(week) {
 				fillWeekDays(week);
 				sortWeekDays(week);
@@ -49,7 +50,16 @@ function Todo($scope, $http, $location) {
 	};
 
 	$scope.save = function() {
-		alert("saving ...");
+		var url = contextPath($location.absUrl(), '#') + 'spring/calendar/save';
+		$http.post(
+				url,
+				$scope.postMonth
+		)
+		.success(function(data, status, headers, config) {
+			alert('OK');
+		}).error(function(data, status, headers, config) {
+			alert('KO!');
+		});
 	};
 
 }
