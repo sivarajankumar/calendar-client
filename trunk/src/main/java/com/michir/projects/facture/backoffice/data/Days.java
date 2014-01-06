@@ -3,9 +3,14 @@ package com.michir.projects.facture.backoffice.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Days {
 	
+	@XmlElement
 	private List<Day> days;
 
 	/**

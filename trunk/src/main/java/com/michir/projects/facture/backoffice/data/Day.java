@@ -4,21 +4,32 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Day {
 
+	@XmlAttribute
 	private Integer dayOfMonth;
 
+	@XmlAttribute
 	private Type type;
 
+	@XmlAttribute
 	private Integer dayOfWeek;
 
+	@XmlAttribute
 	private Integer dayOfYear;
 	
+	@XmlTransient
 	private Calendar calendar;
 	
+	@XmlAttribute
 	private String name;
 	
 	public Day(Calendar calendar) {
