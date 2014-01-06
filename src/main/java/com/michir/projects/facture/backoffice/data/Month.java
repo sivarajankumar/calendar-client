@@ -5,12 +5,20 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Month implements Iterable<Week> {
 
+	@XmlElement
 	private List<Week> weeks;
 	
+	@XmlAttribute
 	private Integer monthOfYear;
 	
 	public Month(Integer year, Integer month) {
