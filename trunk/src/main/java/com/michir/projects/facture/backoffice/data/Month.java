@@ -21,6 +21,10 @@ public class Month implements Iterable<Week> {
 	@XmlAttribute
 	private Integer monthOfYear;
 	
+	public Month() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Month(Integer year, Integer month) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.YEAR, year);

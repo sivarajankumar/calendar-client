@@ -1,15 +1,17 @@
 <div id="content" ng-init="init()">
 
-	<h3>Year {{year}}, Month {{month}}</h3>
-
-	<p>
-     Année: <select ng-model="year" ng-options="y for y in years" required ng-change="change()" />
-    </p>
-    <p>
-	 Mois: <input type="text" ng-model="month" required ng-change="change()" />
-	 </p>
+	<table>
+	  <tr>
+	    <td>Year</td>
+	    <td> <select ng-model="year" ng-options="y for y in years" required ng-change="change()" /></td>
+	  </tr>
+	  <tr>
+	    <td>Month</td>
+	    <td><select class="month" ng-model="month" ng-options="m.name for m in months" required ng-change="change()" /></td>
+	  </tr>
+	</table>
 	<br />
-
+	
 	<table class="table-cal" border="1">
 		<tr ng-repeat="week in weeks">
 			<td ng-repeat="d in week.days" class="day day-{{d.type}}" ng-click="dayClick(d)">{{d.name}} {{d.dayOfMonth}}</td>
@@ -31,6 +33,10 @@
         <tr><td class="day-half">A Half (1/2) working day</td></tr>
         <tr><td class="day-none">A day off</td></tr>
     </table>
+    
+    <hr />
+    <div class="log">{{log}}</div>
+    
 
 </div>
 

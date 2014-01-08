@@ -4,8 +4,6 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.michir.projects.facture.backoffice.data.Day.Type;
-
 public class DaysFilter {
 
 	private static Set<Day> offDays;

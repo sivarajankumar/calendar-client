@@ -13,6 +13,10 @@ public class Week implements Iterable<Day> {
 	
 	private Integer weekOfYear;
 	
+	public Week() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Week(Integer year, Integer month, Integer week) {
 		
 		Calendar calendar = Calendar.getInstance();
