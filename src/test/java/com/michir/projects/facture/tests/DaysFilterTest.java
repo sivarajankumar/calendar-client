@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.michir.projects.facture.backoffice.data.Day;
 import com.michir.projects.facture.backoffice.data.DaysFilter;
+import com.michir.projects.facture.backoffice.data.Type;
 
 public class DaysFilterTest {
 
@@ -27,7 +28,7 @@ public class DaysFilterTest {
 
 		for (Day day : days) {
 			System.out.println(day.getDayOfYear()+"<>"+day.hashCode());
-			Assert.assertEquals(Day.Type.off, day.getType());
+			Assert.assertEquals(Type.off, day.getType());
 		}
 	}
 

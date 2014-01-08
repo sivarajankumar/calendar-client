@@ -26,11 +26,16 @@ public class Day {
 	@XmlAttribute
 	private Integer dayOfYear;
 	
+	@JsonIgnore
 	@XmlTransient
 	private Calendar calendar;
 	
 	@XmlAttribute
 	private String name;
+
+	public Day() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Day(Calendar calendar) {
 		initializeFromCalendar(calendar);
@@ -135,14 +140,6 @@ public class Day {
 		this.type = type;
 	}
 
-	public enum Type {
-		off,
-		none,
-		half,
-		full,
-		hide
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		return 
@@ -151,6 +148,7 @@ public class Day {
 				sameDayInYear((Day) obj);
 	}
 
+	@JsonIgnore
 	public Boolean isWE() {
 		return 
 				calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY
@@ -163,6 +161,7 @@ public class Day {
 		return dayOfYear.hashCode();
 	}
 	
+	@JsonIgnore
 	public Boolean sameDayInYear(Day day) {
 		return day.dayOfYear.intValue() == this.dayOfYear.intValue();
 	}

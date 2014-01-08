@@ -1,12 +1,25 @@
 package com.michir.projects.facture.backoffice.data;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name="calender")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class MonthCalendar {
 
+	@XmlElement
 	private Month month;
 
+	@XmlAttribute
 	private Integer year;
 
+	public MonthCalendar() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public MonthCalendar(Integer year, Integer month) {
 		this.month = new Month(year, month);
 		this.year = year;

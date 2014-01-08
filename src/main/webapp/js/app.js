@@ -4,6 +4,7 @@ angular.module('calendar', [])
         $routeProvider
             .when('/calendar', {templateUrl: 'views/calendar.html', controller: Calendar})
             .when('/todo', {templateUrl: 'views/todo.html', controller: Todo})
-            .otherwise({redirectTo: '/calendar'})
+            .when('/test', {templateUrl: 'views/test.html', controller: Test})
+            .otherwise({redirectTo: '/todo'})
         ;
 }]);
