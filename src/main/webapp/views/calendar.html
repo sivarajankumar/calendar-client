@@ -1,36 +1,6 @@
 <div id="content" ng-init="init()">
-    <h3 align="center">{{months[month].label}} {{year}}</h3>
-    
-    <input type="number" ng-model="year" min="2000" max="2099" required ng-change="change()" />
-    <br />
-	<input type="month" ng-model="month" min="1" max="12" required ng-change="change()" />
-    <br />
 
-    <table class="table-cal">
-    	<tr ng-repeat="week in weeks">
-		  <td ng-repeat="d in week.days" class="day day-{{d.off}}">{{d.name}} {{d.dayOfMonth}}</td>
-		</tr>
-		<!--
-        <tr ng-repeat="day in days">
-            <td ng-repeat="d in day" class="day day-{{d.type}}" ng-click="d.type = (d.type + 50) % 150">{{weekdays[d.weekday].label}} {{d.date}}</td>
-        </tr>
-        -->
-    </table>
-
-    <p align="right">
-        <b>Total working days: {{workingdays()}}</b>
-    </p>
-    <hr width="50%">
-    <table>
-        <tr><td class="day-100">A Working day</td></tr>
-        <tr><td class="day-50">A Half (1/2) working day</td></tr>
-        <tr><td class="day-0">An Off day</td></tr>
-    </table>
-
-    <form ng-submit="save()">
-        <div align="right">
-            <input class="btn-primary" type="submit" value="Enregistrer">
-        </div>
-    </form>
+	<table>
+	</table>
 
 </div>

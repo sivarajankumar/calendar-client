@@ -1,36 +1,48 @@
 package com.michir.projects.facture.backoffice.dao;
 
 import java.io.File;
-import java.io.FilenameFilter;
+import java.util.Collection;
 
 import javax.xml.bind.JAXB;
 
+import org.codehaus.jackson.map.ObjectMapper;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Collections2;
 import com.michir.projects.facture.backoffice.data.MonthCalendar;
+import com.michir.projects.facture.backoffice.data.MonthEntry;
 
 public class MonthDao {
 
-	private static final String MONTH_FILENAME_FORMAT = "month-%d-%d.xml";
-
 	public MonthCalendar load(final Integer year, final Integer month) throws Exception {
-		File file = ResourcesManager.getInstance().getDataStore();
-		File[] files = file.listFiles(new FilenameFilter() {
-			@Override
-			public boolean accept(File arg0, String arg1) {
-				return arg1.equals(String.format(MONTH_FILENAME_FORMAT, year, month));
-			}
-		});
-		if (files.length == 1) {
-			// load
-			return JAXB.unmarshal(files[0], MonthCalendar.class);
-		} else {
+		File file = ResourcesManager.getInstance().loadFile(year, month);
+		if (file == null) {
 			return null;
 		}
+		return JAXB.unmarshal(file, MonthCalendar.class);
+	}
+
+	public Collection<MonthEntry> loadAll(Integer start, Integer maxResults) throws Exception {
+		Collection<File> entries = ResourcesManager.getInstance().listEntries();
+		return Collections2.transform(entries, new Function<File, MonthEntry>() {
+			@Override
+			public MonthEntry apply(File input) {
+				ObjectMapper mapper = new ObjectMapper();
+				try {
+					return mapper.readValue(input, MonthEntry.class);
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+			}
+		});
 	}
 	
 	public void save(MonthCalendar calendar) throws Exception {
-		File store = ResourcesManager.getInstance().getDataStore();
-		File file = new File(store, String.format(MONTH_FILENAME_FORMAT, calendar.getYear(), calendar.getMonth().getMonthOfYear()));
-		JAXB.marshal(calendar, file);
+		File file = ResourcesManager.getInstance().save(calendar);
+		MonthEntry entry = new MonthEntry();
+		entry.setFilename(file.getName());
+		entry.setMonthCalendar(calendar);
+		
+		ResourcesManager.getInstance().save(entry);
 	}
-	
 }

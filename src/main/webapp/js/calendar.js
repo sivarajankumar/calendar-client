@@ -1,11 +1,6 @@
 //calendar.html controller
 function Calendar($scope, $http, $location) {
 
-	// for view, put current month and year into scope
-	var today = new Date();
-	$scope.year = today.getFullYear();
-	$scope.month = today.getMonth();
-
 	/**
 	 * loads and formats data on load.
 	 */

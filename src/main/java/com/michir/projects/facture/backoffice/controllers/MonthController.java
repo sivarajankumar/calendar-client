@@ -1,5 +1,7 @@
 package com.michir.projects.facture.backoffice.controllers;
 
+import java.util.Collection;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.MediaType;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.michir.projects.facture.backoffice.dao.MonthDao;
 import com.michir.projects.facture.backoffice.data.MonthCalendar;
+import com.michir.projects.facture.backoffice.data.MonthEntry;
 import com.michir.projects.facture.backoffice.data.Status;
 
 @Controller
@@ -27,6 +30,11 @@ public class MonthController {
 		} else {
 			return new MonthCalendar(year, month);
 		}
+	}
+
+	@RequestMapping(value="/calendar/getAll", method=RequestMethod.GET)
+	public @ResponseBody Collection<MonthEntry> getAll() throws Exception {
+		return monthDao.loadAll(0, 12);
 	}
 	
 	@RequestMapping(value="/calendar/save", method=RequestMethod.POST)
