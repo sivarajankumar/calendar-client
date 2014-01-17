@@ -1,20 +1,7 @@
 function Todo($scope, $http, $location) {
 
 	$scope.years = arrayRange(2014, 2020);
-	$scope.months = [
-	                 {name: "jan.", index:0},
-	                 {name: "feb.", index:1},
-	                 {name: "mar.", index:2},
-	                 {name: "apr.", index:3},
-	                 {name: "may.", index:4},
-	                 {name: "jun.", index:5},
-	                 {name: "jul.", index:6},
-	                 {name: "aug.", index:7},
-	                 {name: "sep.", index:8},
-	                 {name: "oct.", index:9},
-	                 {name: "nov.", index:10},
-	                 {name: "dec.", index:11}
-	                 ];
+	$scope.months = months;
 
 	$scope.init = function() {
 		var today = new Date();

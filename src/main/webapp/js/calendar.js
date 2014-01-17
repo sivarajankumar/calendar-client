@@ -1,28 +1,22 @@
 //calendar.html controller
 function Calendar($scope, $http, $location) {
 
-	/**
-	 * loads and formats data on load.
-	 */
-	$scope.change = function() {
-		$scope.url = $location.absUrl().substr(0, $location.absUrl().lastIndexOf('#')) + 'spring/calendar/'+$scope.year+'/'+$scope.month;    
-
-		$http.get($scope.url)
-			.success(function(data) {
-				$scope.weeks = data.month.weeks;
-				angular.forEach($scope.weeks, function(week) {
-					fillWeekDays(week);
-					sortWeekDays(week);
-				});
-			})
-			.error(function() {
-				alert("ERROR!");
+	$scope.init = function() {
+	
+		var cp = contextPath($location.absUrl(), '#');
+		var url = cp + 'spring/calendar/getAll';
+		$http.get(url)
+		.success(function(data) {
+			$scope.data = data;
+			angular.forEach(data, function(d) {
+				d.date = new Date(d.modificationDate);
+				d.month = months[d.month].name;
 			});
-	};
-
-	// saving data
-	$scope.save = function($http) {
-		alert("saving ..."+$scope.workingdays());
+		})
+		.error(function() {
+			alert("ERROR!");
+		});
+	
 	};
 
 } // Calendar
